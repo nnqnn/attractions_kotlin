@@ -1,4 +1,4 @@
-package com.nnqnn.attractions.v1
+package com.nnqnn.attractions
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
