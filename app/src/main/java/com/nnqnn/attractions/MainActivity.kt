@@ -1,5 +1,6 @@
 package com.nnqnn.attractions
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,6 +29,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.Favorite
@@ -92,7 +94,7 @@ class MainActivity : ComponentActivity() {
 }
 
 private enum class BottomTab(val label: String, val icon: androidx.compose.ui.graphics.vector.ImageVector) {
-    LIST("Список", Icons.Default.List),
+    LIST("Список", Icons.AutoMirrored.Filled.List),
     MAP("Карта", Icons.Default.Map),
     FAVORITES("Избранное", Icons.Default.Favorite)
 }
@@ -155,7 +157,7 @@ fun AttractionsApp() {
         },
         bottomBar = {
             NavigationBar {
-                BottomTab.values().forEach { tab ->
+                BottomTab.entries.forEach { tab ->
                     NavigationBarItem(
                         selected = selectedTab == tab,
                         onClick = { selectedTab = tab },
@@ -236,7 +238,7 @@ private fun SearchAndFilters(
             horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp),
             verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
         ) {
-            AttractionCategory.values().forEach { category ->
+            AttractionCategory.entries.forEach { category ->
                 FilterChip(
                     selected = selectedCategory == category,
                     onClick = { onCategoryChange(category) },
@@ -411,6 +413,7 @@ private fun MiniRow(
     }
 }
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 private fun MapCard(
     attractions: List<Attraction>,
