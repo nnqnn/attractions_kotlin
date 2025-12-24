@@ -30,6 +30,7 @@ object MockAttractions {
                 phone = "+7 (843) 567-80-00",
                 website = "https://kazan-kremlin.ru"
             ),
+            imageUrl = "https://kazan-kremlin.ru/wp-content/uploads/shutterstock_25079572-scaled.jpg",
             rating = 4.9
         ),
         Attraction(
@@ -50,6 +51,7 @@ object MockAttractions {
                 phone = "+7 (843) 567-80-01",
                 website = "https://kazan-kremlin.ru/objects/64"
             ),
+            imageUrl = "https://upload.wikimedia.org/wikipedia/commons/d/d1/Kazan_Kremlin_Qolsharif_Mosque_08-2016_img2.jpg",
             rating = 4.9
         ),
         Attraction(
@@ -70,6 +72,7 @@ object MockAttractions {
                 phone = "+7 (843) 292-89-84",
                 website = "https://tatmuseum.ru"
             ),
+            imageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/84/%D0%9D%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%BC%D1%83%D0%B7%D0%B5%D0%B9_%D0%A0%D0%B5%D1%81%D0%BF%D1%83%D0%B1%D0%BB%D0%B8%D0%BA%D0%B8_%D0%A2%D0%B0%D1%82%D0%B0%D1%80%D1%81%D1%82%D0%B0%D0%BD.JPG",
             rating = 4.7
         ),
         Attraction(
@@ -89,6 +92,7 @@ object MockAttractions {
             contact = ContactInfo(
                 phone = "+7 (843) 520-00-00"
             ),
+            imageUrl = "https://upload.wikimedia.org/wikipedia/ru/8/8f/%D0%A6%D0%B5%D0%BD%D1%82%D1%80_%D1%81%D0%B5%D0%BC%D1%8C%D0%B8_%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD_1.jpg",
             rating = 4.6
         ),
         Attraction(
@@ -108,6 +112,7 @@ object MockAttractions {
                 phone = "+7 (843) 292-12-02",
                 website = "https://panorama-kazan.ru"
             ),
+            imageUrl = "https://kuda-kazan.ru/uploads/3e1a41fca6613548fade2d4fd95aea71.jpg",
             rating = 4.8
         ),
         Attraction(
@@ -128,6 +133,7 @@ object MockAttractions {
                 phone = "+7 (843) 292-05-32",
                 website = "https://chak-chakmuseum.ru"
             ),
+            imageUrl = "https://upload.wikimedia.org/wikipedia/commons/7/72/%D0%9C%D1%83%D0%B7%D0%B5%D0%B9_%D1%87%D0%B0%D0%BA-%D1%87%D0%B0%D0%BA%D0%B0.jpg",
             rating = 4.7
         ),
         Attraction(
@@ -146,6 +152,7 @@ object MockAttractions {
             contact = ContactInfo(
                 website = "https://kzn.ru"
             ),
+            imageUrl = "https://kuda-kazan.ru/uploads/2e9874baa3d0cfa829eaf9464bc34fb4.jpg",
             rating = 4.6
         )
     )

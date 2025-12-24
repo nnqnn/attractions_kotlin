@@ -42,6 +42,13 @@ data class Attraction(
     val tags: List<String> = emptyList(),
     val contact: ContactInfo = ContactInfo(),
     val metro: String? = null,
-    val rating: Double? = null
+    val rating: Double? = null,
+    val imageUrl: String? = null
+)
+
+data class WeatherInfo(
+    val temperature: Double,
+    val windSpeed: Double,
+    val time: String
 )
 

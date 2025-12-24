@@ -16,6 +16,7 @@ import com.nnqnn.attractions.R
 import com.nnqnn.attractions.model.AttractionCategory
 import com.nnqnn.attractions.ui.adapter.AttractionAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import android.widget.TextView
 
 class AttractionsListFragment : Fragment() {
 
@@ -34,6 +35,7 @@ class AttractionsListFragment : Fragment() {
         val chips: ChipGroup = view.findViewById(R.id.chipGroup)
         val favs: CheckBox = view.findViewById(R.id.checkFavorites)
         val recycler: RecyclerView = view.findViewById(R.id.recycler)
+        val weather: TextView = view.findViewById(R.id.weatherText)
 
         adapter = AttractionAdapter(
             onClick = { showDetails(it) },
@@ -58,6 +60,10 @@ class AttractionsListFragment : Fragment() {
 
         viewModel.items.observe(viewLifecycleOwner) { adapter.submit(it) }
         viewModel.favorites.observe(viewLifecycleOwner) { adapter.notifyDataSetChanged() }
+        viewModel.weather.observe(viewLifecycleOwner) { info ->
+            info?.let { weather.text = "Казань: ${it.temperature}°C, ветер ${it.windSpeed} м/с • ${it.time}" }
+        }
+        viewModel.refreshWeather()
     }
 
     private fun showDetails(attraction: com.nnqnn.attractions.model.Attraction) {

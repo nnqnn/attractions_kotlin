@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.nnqnn.attractions.R
 import com.nnqnn.attractions.data.todayHours
 import com.nnqnn.attractions.model.Attraction
@@ -42,6 +44,7 @@ class AttractionAdapter(
         private val desc: TextView = itemView.findViewById(R.id.desc)
         private val info: TextView = itemView.findViewById(R.id.info)
         private val fav: ImageButton = itemView.findViewById(R.id.btnFav)
+        private val photo: ImageView = itemView.findViewById(R.id.photo)
 
         fun bind(
             item: Attraction,
@@ -49,6 +52,11 @@ class AttractionAdapter(
             onClick: (Attraction) -> Unit,
             onFav: (Attraction) -> Unit
         ) {
+            photo.load(item.imageUrl) {
+                crossfade(true)
+                placeholder(android.R.color.darker_gray)
+                error(android.R.color.darker_gray)
+            }
             title.text = item.name
             subtitle.text = "${item.category.label} • ${item.address}"
             desc.text = item.shortDescription
