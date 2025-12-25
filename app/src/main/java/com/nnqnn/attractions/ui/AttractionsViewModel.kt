@@ -10,6 +10,7 @@ import com.nnqnn.attractions.domain.ThemeManager
 import com.nnqnn.attractions.domain.WeatherRepository
 import com.nnqnn.attractions.model.Attraction
 import com.nnqnn.attractions.model.AttractionCategory
+import com.nnqnn.attractions.model.MapBounds
 import com.nnqnn.attractions.model.WeatherInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +34,9 @@ class AttractionsViewModel(
 
     private val _items = MutableLiveData<List<Attraction>>(repository.getAll())
     val items: LiveData<List<Attraction>> = _items
+
+    private val _bounds = MutableLiveData(repository.bounds())
+    val bounds: LiveData<MapBounds> = _bounds
 
     init {
         viewModelScope.launch(Dispatchers.IO) {

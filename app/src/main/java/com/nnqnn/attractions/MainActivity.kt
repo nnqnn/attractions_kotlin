@@ -3,6 +3,9 @@ package com.nnqnn.attractions
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.core.view.WindowCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.nnqnn.attractions.databinding.ActivityMainBinding
 import com.nnqnn.attractions.domain.ThemeManager
 import com.nnqnn.attractions.ui.AttractionsListFragment
@@ -18,8 +21,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         themeManager.applyCurrent()
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        window.statusBarColor = ContextCompat.getColor(this, android.R.color.black)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 
         if (savedInstanceState == null) {
             openFragment(AttractionsListFragment(), "list")

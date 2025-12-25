@@ -1,4 +1,4 @@
-package com.nnqnn.attractions.network
+package com.nnqnn.weatherlib
 
 import retrofit2.http.GET
 

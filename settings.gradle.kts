@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "attractions"
 include(":app")
+include(":weatherlib")
  

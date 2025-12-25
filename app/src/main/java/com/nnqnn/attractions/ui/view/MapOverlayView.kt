@@ -20,13 +20,13 @@ class MapOverlayView @JvmOverloads constructor(
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
     }
-    private val data = mutableListOf<Pair<Attraction, Pair<Double, Double>>>()
+    private val data = mutableListOf<Attraction>()
     private var bounds: MapBounds? = null
     var onSelect: ((Attraction) -> Unit)? = null
 
     fun setData(attractions: List<Attraction>, mapBounds: MapBounds) {
         data.clear()
-        data.addAll(attractions.map { it to it.coords })
+        data.addAll(attractions)
         bounds = mapBounds
         invalidate()
     }
@@ -55,9 +55,11 @@ class MapOverlayView @JvmOverloads constructor(
             val maxLon = b.maxLon
             val minLat = b.minLat
             val maxLat = b.maxLat
-            data.map { (attraction, coords) ->
-                val xRatio = ((coords.second - minLon) / (maxLon - minLon)).toFloat().coerceIn(0f, 1f)
-                val yRatio = 1f - ((coords.first - minLat) / (maxLat - minLat)).toFloat().coerceIn(0f, 1f)
+            data.map { attraction ->
+                val lat = attraction.coords.getOrNull(0) ?: 0.0
+                val lon = attraction.coords.getOrNull(1) ?: 0.0
+                val xRatio = ((lon - minLon) / (maxLon - minLon)).toFloat().coerceIn(0f, 1f)
+                val yRatio = 1f - ((lat - minLat) / (maxLat - minLat)).toFloat().coerceIn(0f, 1f)
                 Triple(attraction, xRatio * width, yRatio * height)
             }
         } else {

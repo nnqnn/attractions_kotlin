@@ -3,7 +3,7 @@ package com.nnqnn.attractions.domain
 import com.nnqnn.attractions.data.local.dao.WeatherDao
 import com.nnqnn.attractions.data.local.entity.WeatherEntity
 import com.nnqnn.attractions.model.WeatherInfo
-import com.nnqnn.attractions.network.WeatherApi
+import com.nnqnn.weatherlib.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -17,9 +17,9 @@ class WeatherRepository(
         val current = remote?.current_weather
         if (current?.temperature != null && current.windspeed != null && current.time != null) {
             val info = WeatherInfo(
-                temperature = current.temperature,
-                windSpeed = current.windspeed,
-                time = current.time
+                temperature = current.temperature!!,
+                windSpeed = current.windspeed!!,
+                time = current.time!!
             )
             weatherDao.insert(
                 WeatherEntity(

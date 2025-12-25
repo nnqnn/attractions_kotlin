@@ -36,7 +36,7 @@ data class Attraction(
     val shortDescription: String,
     val description: String,
     val address: String,
-    val coords: Pair<Double, Double>,
+    val coords: List<Double>,
     val schedule: List<ScheduleItem>,
     val price: String = "Уточнить",
     val tags: List<String> = emptyList(),

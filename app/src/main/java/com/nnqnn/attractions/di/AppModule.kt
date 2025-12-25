@@ -7,34 +7,18 @@ import com.nnqnn.attractions.domain.AttractionsRepository
 import com.nnqnn.attractions.domain.FavoritesStore
 import com.nnqnn.attractions.domain.ThemeManager
 import com.nnqnn.attractions.domain.WeatherRepository
-import com.nnqnn.attractions.network.WeatherApi
+import com.nnqnn.weatherlib.WeatherApi
 import com.nnqnn.attractions.ui.AttractionsViewModel
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.nnqnn.weatherlib.WeatherNetwork
 
 val appModule = module {
-    single { AttractionsRepository() }
+    single { AttractionsRepository(get()) }
     single { ThemeManager(get()) }
 
-    // Network
-    single {
-        val logging = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
-        OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
-    }
-    single {
-        Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
-            .client(get())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-    single<WeatherApi> { get<Retrofit>().create(WeatherApi::class.java) }
+    // Network (weather in separate module)
+    single<WeatherApi> { WeatherNetwork.createApi() }
 
     // DB
     single {

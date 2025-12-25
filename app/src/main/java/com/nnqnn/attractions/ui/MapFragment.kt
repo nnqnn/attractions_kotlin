@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nnqnn.attractions.R
-import com.nnqnn.attractions.data.MockAttractions
 import com.nnqnn.attractions.ui.adapter.AttractionAdapter
 import com.nnqnn.attractions.ui.view.MapOverlayView
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -38,7 +37,7 @@ class MapFragment : Fragment() {
 
         viewModel.items.observe(viewLifecycleOwner) { items ->
             adapter.submit(items)
-            mapView.setData(items, MockAttractions.bounds)
+            viewModel.bounds.value?.let { mapView.setData(items, it) }
         }
         viewModel.favorites.observe(viewLifecycleOwner) { adapter.notifyDataSetChanged() }
     }

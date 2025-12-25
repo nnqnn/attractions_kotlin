@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.nnqnn.attractions.R
-import com.nnqnn.attractions.data.MockAttractions
 import com.nnqnn.attractions.data.todayHours
+import com.nnqnn.attractions.domain.AttractionsRepository
+import org.koin.android.ext.android.inject
 
 class AttractionDetailsDialog : BottomSheetDialogFragment() {
 
     private var attractionId: Int = 0
+    private val repository: AttractionsRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +30,7 @@ class AttractionDetailsDialog : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val item = MockAttractions.items.firstOrNull { it.id == attractionId } ?: return
+        val item = repository.getAll().firstOrNull { it.id == attractionId } ?: return
         view.findViewById<TextView>(R.id.title).text = item.name
         view.findViewById<TextView>(R.id.subtitle).text = "${item.category.label} • ${item.address}"
         view.findViewById<TextView>(R.id.desc).text = item.description
